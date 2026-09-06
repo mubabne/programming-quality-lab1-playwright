@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Generated Playwright output (selected evidence belongs in docs/)
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Local environment and OS files
+.env
+.env.*
+.DS_Store
+Thumbs.db

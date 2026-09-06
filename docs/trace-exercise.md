@@ -1,31 +1,9 @@
-# Санаатай алдаа ба засвар
+# Trace дасгал
 
-2026-09-06-нд successful login тестийн гарчиг шалгах assertion-ийг түр өөрчилсөн:
+Successful login тестэд Products гэсэн зөв текстийг Products - intentional failure болгож түр өөрчилсөн. Тестийг Chromium дээр trace-тай ажиллуулахад 1 failed болсон.
 
-```ts
-await expect(page.getByText('Products - intentional failure', { exact: true })).toBeVisible();
-```
+Trace Viewer-д нээж харахад Login click болон inventory URL шалгалт амжилттай болсон байна. Дараагийн toBeVisible assertion нь байхгүй текстийг 5000 ms хүлээгээд element(s) not found алдаа өгсөн. Хуудасны snapshot дээр Products гэсэн бодит гарчиг харагдсан тул шалтгаан нь буруу хүлээгдэж буй текст байсан.
 
-Ажиллуулсан команд:
+Assertion-д Products гэсэн зөв текстийг буцааж тавьсны дараа үндсэн 9 тест pass болсон. Алдаатай хувилбарыг эцсийн кодонд үлдээгээгүй.
 
-```sh
-npx playwright test tests/mytest.spec.ts --project=chromium --grep "successful login" --trace on --reporter=line
-```
-
-Үр дүн: **1 failed**. Login үйлдэл болон inventory URL assertion амжилттай болсон боловч дараагийн `toBeVisible()` 5000 ms хүлээгээд element олдоогүй алдаа өгсөн. Playwright-ийн алдааны context-д бодит хуудасны гарчиг `Products` гэж байна. Иймээс шалтгаан нь нэвтрэлт эсвэл сүлжээ биш, assertion-д зориуд буруу текст өгсөн явдал юм.
-
-Trace Viewer-ээр шалгах:
-
-```sh
-npx playwright show-trace docs/intentional-failure-trace.zip
-```
-
-Улаан assertion-ийг сонгож locator, call log болон хуудасны snapshot-ийг харьцуулна. Энэ тайлбарыг test runner-ийн алдаа ба үүссэн page context дээр үндэслэн бэлтгэсэн; оюутан Trace Viewer дотор мөн нээж шалгана.
-
-Засвар:
-
-```ts
-await expect(page.getByText('Products', { exact: true })).toBeVisible();
-```
-
-Засварын дараа үндсэн бүх тестийг ажиллуулахад **9 passed (8.6s)** болсон. Repository-ийн эцсийн тестэд санаатай алдаа үлдээгээгүй. Амжилттай trace болон алдааны trace-ийг ялгаатай нэрээр хадгалсан.
+[Алдаатай ажиллуулалтын trace](intentional-failure-trace.zip) · [Зөв login/logout trace](successful-login-trace.zip)

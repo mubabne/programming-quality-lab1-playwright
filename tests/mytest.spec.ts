@@ -1,14 +1,18 @@
 import { test, expect } from '@playwright/test';
 
-test('successful login', async ({ page }) => 
-{
-    await page.goto('https://www.saucedemo.com/');
-    await page.getByPlaceholder('Username').fill('standard_user');
-    await page.getByPlaceholder('Password').fill('secret_sauce');
-    await page.getByRole('button', { name: 'Login' }).click();
-    await expect(page).toHaveURL(/inventory/);
-    await expect(page.getByText('Products')).toBeVisible();
-}); 
+test('successful login', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com/');
+  await page.getByPlaceholder('Username').fill('standard_user');
+  await page.getByPlaceholder('Password').fill('secret_sauce');
+  await page.getByRole('button', { name: 'Login', exact: true }).click();
+  await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
+  await expect(page.getByText('Products', { exact: true })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Open Menu' }).click();
+  await page.getByRole('link', { name: 'Logout', exact: true }).click();
+  await expect(page).toHaveURL('https://www.saucedemo.com/');
+  await expect(page.getByRole('button', { name: 'Login', exact: true })).toBeVisible();
+});
 
 test('add product to cart after login', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');
@@ -19,6 +23,11 @@ test('add product to cart after login', async ({ page }) => {
   await page.getByRole('button', { name: 'Add to cart', exact: true }).first().click();
   await expect(page.getByRole('button', { name: 'Remove', exact: true })).toBeVisible();
   await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
+
+  await page.getByRole('button', { name: 'Open Menu' }).click();
+  await page.getByRole('link', { name: 'Logout', exact: true }).click();
+  await expect(page).toHaveURL('https://www.saucedemo.com/');
+  await expect(page.getByRole('button', { name: 'Login', exact: true })).toBeVisible();
 });
 
 test('failed login with wrong password', async ({ page }) => {

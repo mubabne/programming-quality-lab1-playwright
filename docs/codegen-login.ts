@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('Бичүүлсэн нэвтрэх, сагслах, гарах үйлдэл', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');
   await page.locator('[data-test="username"]').click();
   await page.locator('[data-test="username"]').fill('standard_user');
@@ -12,4 +12,4 @@ test('test', async ({ page }) => {
   await page.locator('[data-test="logout-sidebar-link"]').click();
 });
 
-// The recording works, but the role and placeholder locators in my tests are easier to read.
+// Код ажилласан ч өөрийн бичсэн тестийг уншихад арай амар байсан.

@@ -10,6 +10,17 @@ test('successful login', async ({ page }) =>
     await expect(page.getByText('Products')).toBeVisible();
 }); 
 
+test('add product to cart after login', async ({ page }) => {
+  await page.goto('https://www.saucedemo.com/');
+  await page.getByPlaceholder('Username').fill('standard_user');
+  await page.getByPlaceholder('Password').fill('secret_sauce');
+  await page.getByRole('button', { name: 'Login', exact: true }).click();
+
+  await page.getByRole('button', { name: 'Add to cart', exact: true }).first().click();
+  await expect(page.getByRole('button', { name: 'Remove', exact: true })).toBeVisible();
+  await expect(page.locator('.shopping_cart_badge')).toHaveText('1');
+});
+
 test('failed login with wrong password', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');
   await page.getByPlaceholder('Username').fill('standard_user');

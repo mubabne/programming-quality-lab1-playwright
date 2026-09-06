@@ -4,6 +4,7 @@
 - **Оюутны код:** B242270045
 - **Хичээл:** Программ хангамжийн чанар
 - **Тестийн сайт:** https://www.saucedemo.com/
+- **GitHub:** https://github.com/mubabne/programming-quality-lab1-playwright
 
 ## Суулгах, ажиллуулах
 
@@ -38,6 +39,8 @@ Chromium, Firefox, WebKit тус бүрт 3 тест буюу нийт **9 те�
 ## Нотолгоо ба trace дасгал
 
 2026-09-06-ны эцсийн үндсэн ажиллуулалт: **9 passed**.
+
+Public GitHub repository-оос шинэ `github-verification-clone` хавтсанд clone хийж, `npm.cmd install`, `npx.cmd playwright test` ажиллуулахад мөн **9 passed (7.6s)** болсон. Windows PowerShell дээр `.cmd` нь npm/npx-ийн Windows launcher-ийг шууд сонгоно.
 
 - [Бүх 9 тестийн HTML report](docs/test-report.html) — файлыг татаж аваад browser-оор нээнэ; GitHub HTML-ийг шууд report хэлбэрээр харуулахгүй.
 - [Амжилттай login болон logout trace](docs/successful-login-trace.zip).
@@ -83,6 +86,6 @@ AI тусламжийг тестэд logout нэмэх, тест ажиллуу�
 - [x] README-д нэр, оюутны код оруулсан.
 - [ ] Codegen recording болон өөрийн ажиглалтыг нэмсэн.
 - [ ] README болон AI-ийн тусламжтай бичсэн тайлбаруудыг өөрөө хянасан.
-- [ ] Repository-г public GitHub repo руу push хийсэн.
-- [ ] GitHub-аас шинэ хавтсанд clone хийж `npm install`, `npx playwright test` ажиллуулсан.
+- [x] Repository-г public GitHub repo руу push хийсэн.
+- [x] GitHub-аас шинэ хавтсанд clone хийж `npm install`, `npx playwright test` ажиллуулсан.
 - [ ] Teams Assignment-д repository-ийн линкийг хавсаргаж **Turn in** дарсан.
